@@ -1,13 +1,12 @@
 package demo;
+import akka.actor.typed.ActorSystem;
 
-/**
- * Hello world!
- *
- */
 public class App 
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        final ActorSystem<HelloWorldMain.SayHello> system = ActorSystem.create(HelloWorldMain.create(), "hello");
+        system.tell(new HelloWorldMain.SayHello("World"));
+        system.tell(new HelloWorldMain.SayHello("Akka"));        
     }
 }
